@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import {Route} from "react-router-dom";
+import Header from "./Header/Header";
+import Home from "./HomePage/HomePage";
+import Login from "./LoginPage/LoginPage";
+import ProfileContainer from "./ProfilePage/ProfileContainerPage";
+import NewsContainer from "./NewsPage/NewsContainerPage";
+import {connect} from "react-redux";
+import {SuccessLogin} from "./LoginPage/auth-reducer";
+import LogOut from "./LoginPage/LogOut";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+    componentDidMount() {
+        if(localStorage.getItem('name')){
+            debugger
+            let login=  JSON.parse(localStorage.getItem('name'))
+            this.props.SuccessLogin(login.isAuth)
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Header/>
+                <div>
+                    <Route path="/ /" component={Home}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/posts" component={NewsContainer}/>
+                    <Route path="/profile" component={ProfileContainer}/>
+                    <Route path="/logout" component={LogOut}/>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default connect(null, {SuccessLogin,})(App) ;

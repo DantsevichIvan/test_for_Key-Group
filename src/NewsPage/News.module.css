@@ -1,0 +1,14 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post {
+    border: solid 1px;
+    width: 200px;
+    height: max-content;
+    margin: 15px;
+    display: flex;
+}
