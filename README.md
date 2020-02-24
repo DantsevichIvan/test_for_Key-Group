@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-пароль: username Admin, password: 123123
+пароль:  Admin, password: 123123
 
 ## Available Scripts
 
